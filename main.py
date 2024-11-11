@@ -1,18 +1,12 @@
 """
 Main file
 """
-from classes.item import Item
+from tests import print_player, pickup_item
 
 def main():
     """Main class"""
-    sword = Item(
-        name            = "Sword",
-        description     = "A simple sword made in iron.",
-        weight          = 1500,
-        value           = 10
-    )
-
-    print(sword.get_description())
+    print_player()
+    pickup_item()
 
 if __name__ == "__main__":
     main()

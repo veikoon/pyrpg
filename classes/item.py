@@ -2,58 +2,47 @@
 Main class for items
 """
 
+from dataclasses    import dataclass
+from .effect        import Effect
+
+@dataclass
 class Item:
     """Generic class for items"""
-    def __init__(self, name :str, description :str, weight :float=0.0, value: float=0.0):
 
-        self.name           = name.capitalize()
-        self.description    = description
-        self.weight         = weight
-        self.value          = value
+    id             : str
+    name           : str
+    description    : str
+    weight         : int = 0
+    value          : int = 0
+    quentity       : int = 1
 
     def __str__(self):
         return self.name
 
-    def get_weight(self) -> str:
+    def get_weight(self) -> int:
         """Get weigth with format"""
-        return f"{self.weight / 1000} kg" if self.weight > 1000 else f"{self.weight} g"
+        return self.weight * self.quentity
 
-    def get_value(self) -> str:
+    def get_value(self) -> int:
         """Get value with format"""
-        return f"{self.value} golds"
+        return self.value * self.quentity
 
     def get_description(self) -> str:
         """Get full item descripttion"""
         return f"{self.name:<9} | {self.description}\n{self.get_weight():<9} | {self.get_value()}"
 
+@dataclass
 class Weapon(Item):
     """Generic weapon class"""
 
-    def __init__(self, name :str,
-                 description :str,
-                 weight :float,
-                 value: float,
-                 dammage: int=1,
-                 modifier: int=1,
-                 effect=None):
+    dammage     : int = 1
+    modifier    : int = 1
+    effect      : Effect = None
 
-        Item.__init__(name, description, weight, value)
-        self.dammage    = dammage
-        self.modifier   = modifier
-        self.effect     = effect
-
+@dataclass
 class Armor(Item):
     """Generic weapon class"""
 
-    def __init__(self, name :str,
-                 description :str,
-                 weight :float,
-                 value: float,
-                 dammage_reduction: int=1,
-                 modifier: int=1,
-                 effect=None):
-
-        Item.__init__(name, description, weight, value)
-        self.dammage_reduction  = dammage_reduction
-        self.modifier           = modifier
-        self.effect             = effect
+    dammage_reduction: int = 1
+    modifier    : int = 1
+    effect      : Effect = None
