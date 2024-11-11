@@ -13,7 +13,6 @@ class Inventory:
 
 
     def __post_init__(self):
-
         if self.items is None:
             self.items  = {}
 

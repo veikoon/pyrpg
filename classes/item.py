@@ -39,10 +39,18 @@ class Weapon(Item):
     modifier    : int = 1
     effect      : Effect = None
 
+    def get_dammage(self) -> int:
+        """Dammage modifier"""
+        return self.dammage * self.modifier
+
 @dataclass
 class Armor(Item):
     """Generic weapon class"""
 
-    dammage_reduction: int = 1
-    modifier    : int = 1
-    effect      : Effect = None
+    dammage_reduction   : int = 1
+    modifier            : int = 1
+    effect              : Effect = None
+
+    def get_defense(self) -> int:
+        """Defense accessor"""
+        return self.dammage_reduction * self.modifier
