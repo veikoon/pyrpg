@@ -1,4 +1,4 @@
-"""Unitary tests for player"""
+"""Unitary tests for inventory"""
 
 import unittest
 from copy import deepcopy
