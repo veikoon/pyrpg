@@ -2,8 +2,23 @@
 Main class for items
 """
 
+from enum import Enum
 from dataclasses    import dataclass
 from .effect        import Effect
+
+
+class Rarity(Enum):
+    """Rariy of an item"""
+    LEGENDARY   : "Legendary"
+    RARE        : "Rare"
+    UNCOMMON    : "Uncommon"
+    COMMON      : "Common"
+
+class WeaponType(Enum):
+    """Type of weapon"""
+    RANGED   : "Ranged"
+    MELEE    : "Melee"
+    MAGIC    : "Magic"
 
 @dataclass
 class Item:
@@ -15,6 +30,7 @@ class Item:
     weight         : int = 0
     value          : int = 0
     quentity       : int = 1
+    rarity         : Rarity = Rarity.COMMON
 
     def __str__(self):
         return self.name
@@ -38,6 +54,7 @@ class Weapon(Item):
     dammage     : int = 1
     modifier    : int = 1
     effect      : Effect = None
+    weapon_type : WeaponType = None
 
     def get_dammage(self) -> int:
         """Dammage modifier"""
